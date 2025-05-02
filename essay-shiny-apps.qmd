@@ -1,0 +1,176 @@
+---
+title: "Essay on Shiny Apps"
+format: html
+toc: true         
+toc-title: "On this page"  
+number-sections: true 
+---
+
+# Question 2
+
+1.  In Step 2, you learned how to build an interactive web app using Shiny. Let's assume that your coworkers are interested in learning about it and assume that you are helping them. Create a lecture note that you can use to teach the person. This will become part of the website under "Essay on Shiny Apps."
+
+# What is Shiny?
+
+**Shiny** is an R package that makes it easy to build **interactive web applications** directly from R — without needing to know HTML, CSS, or JavaScript.
+
+With Shiny, you can:
+
+-   Create dashboards
+
+-   Visualize data interactively
+
+-   Build tools for analysis that anyone can use via a web browser
+
+Shiny apps are commonly used for **data analysis dashboards**, **data exploration tools**, **dynamic reports**, and even **full websites**.
+
+------------------------------------------------------------------------
+
+## Key Components of a Shiny App
+
+A basic Shiny app has **two main parts**:
+
+1.  **User Interface (UI)**
+
+    -   Controls how the app **looks**: buttons, sliders, text inputs, plots, tables, etc.
+
+    -   Written using `fluidPage()`, `sidebarLayout()`, `mainPanel()`, and other functions.
+
+2.  **Server Function**
+
+    -   Controls the app’s **logic**: what happens when a user interacts with the UI.
+
+    -   Written inside the `server` function.
+
+These two parts are combined and launched with `shinyApp(ui, server)`.
+
+------------------------------------------------------------------------
+
+## Interactive Example
+
+Here is a live example of a simple interactive dashboard using Shiny:
+
+```{r}
+library(shiny)
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Interactive Data Summary"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        inputId = "dataset", 
+        label = "Choose a dataset:", 
+        choices = c("mtcars", "iris", "pressure")
+      ),
+      
+      sliderInput(
+        inputId = "obs",
+        label = "Number of observations:",
+        min = 5,
+        max = 50,
+        value = 10
+      )
+    ),
+    
+    mainPanel(
+      h3(textOutput("caption")),
+      tableOutput("data_table"),
+      plotOutput("data_plot")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output) {
+  
+  selectedData <- reactive({
+    dataset <- switch(input$dataset,
+                      "mtcars" = mtcars,
+                      "iris" = iris,
+                      "pressure" = pressure)
+    head(dataset, input$obs)
+  })
+  
+  output$caption <- renderText({
+    paste("Showing", input$obs, "observations from", input$dataset, "dataset")
+  })
+  
+  output$data_table <- renderTable({
+    selectedData()
+  })
+  
+  output$data_plot <- renderPlot({
+    data <- selectedData()
+    
+    if (input$dataset == "mtcars") {
+      plot(data$mpg, data$hp,
+           xlab = "Miles Per Gallon", ylab = "Horsepower",
+           main = "MPG vs Horsepower")
+    } else if (input$dataset == "iris") {
+      plot(data$Sepal.Length, data$Petal.Length,
+           xlab = "Sepal Length", ylab = "Petal Length",
+           main = "Sepal vs Petal Length")
+    } else if (input$dataset == "pressure") {
+      plot(data$temperature, data$pressure,
+           xlab = "Temperature", ylab = "Pressure",
+           main = "Temperature vs Pressure")
+    }
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
+```
+
+------------------------------------------------------------------------
+
+## Example: Building a Dashboard
+
+In the videos, they demonstrate:
+
+-   **Multiple Inputs:** Sliders, checkboxes, text boxes
+
+-   **Interactive Outputs:** Plots, tables, summary statistics
+
+-   **Reactivity:** When a user changes an input, the outputs update **automatically**.
+
+An example from the tutorial shows users selecting a range of numbers to create a histogram that updates in real-time.
+
+**Reactivity is key** — Shiny automatically tracks inputs and updates outputs without refreshing the page.
+
+------------------------------------------------------------------------
+
+## Best Practices for Building Shiny Apps
+
+-   **Start simple.** Build a minimal working app first.
+
+-   **Use layout functions** like `fluidRow()`, `column()`, `tabsetPanel()` to organize your app nicely.
+
+-   **Add reactivity carefully.** Use `reactive()` when multiple outputs depend on the same calculations.
+
+-   **Test often.** Small changes, then preview the app to make sure it's behaving as expected.
+
+-   **Keep UI and server organized.** As your app grows, separate the `ui` and `server` into different files for clarity (`ui.R`and `server.R`).
+
+------------------------------------------------------------------------
+
+## Why Use Shiny for Dashboards?
+
+-   **No need for frontend programming** — everything is done in R.
+
+-   **Great for data scientists** — you can turn analyses into interactive products quickly.
+
+-   **Flexible** — Shiny apps can be simple or very complex depending on your needs.
+
+-   **Expandable** — you can integrate Shiny with **Quarto websites**, **Shiny Server**, **Docker**, **AWS**, and more.
+
+------------------------------------------------------------------------
+
+# Conclusion
+
+**Shiny** is a powerful tool that empowers R users to build dynamic, interactive applications easily.\
+With just basic knowledge of R programming and Shiny's intuitive structure, you can create impressive dashboards that let users explore and interact with data in real-time.
+
+In our next section, we'll explore **Shiny Live** — a new technology that brings Shiny directly into the browser without needing a server!

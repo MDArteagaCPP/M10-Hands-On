@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 50b2c4bc-0ea7-4bc6-9f60-6ec976291f09
+      url: 'https://mdarteaga27.quarto.pub/my-website'

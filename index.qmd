@@ -1,0 +1,45 @@
+---
+title: "Arteaga, Michael M10 Hands-On"
+format: html
+---
+
+---
+title: "Home Page"
+format: html
+---
+
+# Welcome to My Website
+
+<p style="text-align: center;">
+
+<img src="IMG_1524.jpeg" width="400px" style="border-radius: 50%;"/>
+
+</p>
+
+Hi, my name is Michael, and welcome to my website!
+
+Below you will learn a little about myself, but feel free to explore through the sections above.
+
+# Skills
+
+I've gained experience in many different subjects, including music, visual marketing, cinematography, photography, graphic design, and data analytics. Much of my experience comes from hands-on learning as I've taught myself many of these skill-sets over the years as I've pursued different endeavors and learned along the way. I still have many more things I'd like to learn, but those will all come with time!
+
+# Education
+
+My educational journey began with music in mind. After graduating high school, I pursued a degree in music, specifically around music technology and business. I later added a second major in business, with an emphasis in marketing management. Once I graduated, I built up my photo and video business, catering to events, marketing content, and entrepreneurship. Eventually, I returned to school to pursue my master's degree in digital marketing at Cal Poly Pomona, which is where I received my first two bachelor's degrees.
+
+# Career
+
+After having spent so much time honing my skills behind the camera and in entertainment, I would like to keep that in my trajectory while pursuing a career. At the same time, I wish to also pursue a career in marketing, where I can lead teams that bring big ideas to life through marketing campaigns, digital content, and visual entertainment.
+
+# Question 4
+
+1.  In Steps 4 and 5, you will watch a series of videos that teach you how to create a website. Using what you learn, create your "Home Page" of this assignment website.
+
+    1.  The home page should have Your photo, your career aspiration, your skills, and your education.
+
+    2.  Put together all four files (home page, dashboard, essay on shiny apps, and essay on shiny live) in \_quarto.yml file and do the appropriate structuring and naming of the webpage.
+
+    3.  Publish the website to Quarto-Pub.
+
+    4.  Publish the website to github pages.

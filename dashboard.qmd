@@ -1,0 +1,58 @@
+---
+title: "Dashboard"
+format: 
+  html:
+    page-layout: article
+    theme: cosmo
+toc: true          
+toc-title: "On this page"  
+number-sections: true 
+runtime: shiny
+---
+
+# Question 1
+
+1.  As you watch videos on Quarto Dashboard in Step 1, follow along with the data of your choice and create a dashboard you can add to your website.
+
+
+# Basic Dashboard Template
+
+Here you can add interactive inputs if you want (like sliders, dropdowns, etc.).
+
+Example:
+
+```{r}
+
+library(shiny)
+
+selectInput("dataset", "Choose a dataset:",
+            choices = c("mtcars", "iris", "pressure"))
+
+```
+
+## Overview
+
+Summary information or introductory text.
+
+```{r}
+summary(cars)
+```
+
+## Plot Section
+
+A simple example plot:
+
+```{r}
+
+```
+
+## Data Table Section
+
+A table displaying sample data:
+
+```{r}
+library(DT)
+
+datatable(iris)
+
+```

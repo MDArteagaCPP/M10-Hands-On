@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "My Website"
+  sidebar:
+    collapse-level: 1
+    style: "docked"      
+    search: true         
+    contents:
+      - section: "Main Pages"
+        contents:
+          - text: "Home Page"
+            href: index.qmd
+          - text: "Dashboard"
+            href: dashboard.qmd
+      - section: "Essays"
+        contents:
+          - text: "Essay on Shiny Apps"
+            href: essay-shiny-apps.qmd
+          - text: "Essay on Shiny Live"
+            href: essay-shiny-live.qmd
+format:
+  html:
+    theme: minty
+    toc: true             
+
+
+editor: visual
+
